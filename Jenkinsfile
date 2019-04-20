@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean install'
             }
         }
         stage('Test') {
@@ -37,11 +37,6 @@ pipeline {
                         dockerImage.push()
                     }
                 }
-            }
-        }
-        stage('Deployment') {
-            steps {
-                sh 'kubectl create -f ~/Documents/myapp/myapp-deployment.yml';
             }
         }
     }
